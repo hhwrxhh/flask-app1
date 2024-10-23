@@ -1,9 +1,12 @@
 from flask import Flask, render_template, request, jsonify
 from PIL import Image, ImageEnhance, ImageFilter
 from io import BytesIO
+from os import path
 import base64
 
-app = Flask(__name__)
+app = Flask(__name__,static_folder='../static')
+app.template_folder = path.join('..', 'templates')
+# app.config['STATIC_FOLDER'] = "../static"
 
 # Глобальні змінні для збереження оригінального та відредагованого зображення
 original_image = None
@@ -30,7 +33,7 @@ def adjust_image(image, brightness=1.0, contrast=1.0, blur=0, to_grayscale=False
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('./index.html')
 
 @app.route('/load_image', methods=['POST'])
 def load_image():
@@ -91,5 +94,6 @@ def download_image():
     return jsonify({'image': img_str})
 
 if __name__ == '__main__':
+    
     app.run(debug=True)
 
