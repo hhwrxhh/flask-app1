@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request, jsonify
 from PIL import Image, ImageEnhance, ImageFilter
-import requests
 from io import BytesIO
 import base64
 
