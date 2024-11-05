@@ -1,0 +1,24 @@
+version: "3.9"
+
+services:
+  frontend:
+    build:
+      context: ./frontend  # Path to your frontend directory
+      dockerfile: Dockerfile  # Use Dockerfile in the frontend directory
+    ports:
+      - "3000:3000"   # Map container port 3000 to localhost port 3000
+    depends_on:
+      - backend  # Ensure backend is started before frontend
+    environment:
+      - NODE_ENV=production  # Set environment variable for Node.js app
+
+  backend:
+    build:
+      context: ./backend  # Path to your backend directory
+      dockerfile: Dockerfile  # Use Dockerfile in the backend directory
+    ports:
+      - "5000:5000" # Map container port 5000 to localhost port 5000
+    environment:
+      - FLASK_ENV=production  # Set environment variable for Flask app
+    volumes:
+      - ./backend:/app  # Optional: mount backend code for hot-reloading
