@@ -1,4 +1,4 @@
 Flask
 Pillow
-gunicorn
+# gunicorn
 python-dotenv

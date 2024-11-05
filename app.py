@@ -4,8 +4,9 @@ from io import BytesIO
 from os import path
 import base64
 
-app = Flask(__name__,static_folder='../static')
-app.template_folder = path.join('..', 'templates')
+app = Flask(__name__,static_folder='static')
+print(app)
+# app.template_folder = path.join('..', 'templates')
 # app.config['STATIC_FOLDER'] = "../static"
 
 # Глобальні змінні для збереження оригінального та відредагованого зображення
@@ -33,7 +34,7 @@ def adjust_image(image, brightness=1.0, contrast=1.0, blur=0, to_grayscale=False
 
 @app.route('/')
 def index():
-    return render_template('./index.html')
+    return render_template('index.html')
 
 @app.route('/load_image', methods=['POST'])
 def load_image():
@@ -97,3 +98,13 @@ if __name__ == '__main__':
     
     app.run(debug=True)
 
+
+# from flask import Flask
+# app = Flask(__name__)
+# print(1234)
+# @app.route("/")
+# def helloworld():
+#     return "Hello World!"
+# if __name__ == "__main__":
+#     print("HELLO wolrf")
+#     app.run(debug=True)
